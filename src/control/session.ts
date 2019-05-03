@@ -1,6 +1,4 @@
 // Controller for session storage
-import { TokenPayload } from "../types/token";
-
 const tokenSessionKey = "loginToken";
 
 export function setToken(token: string) {

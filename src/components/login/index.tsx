@@ -2,6 +2,7 @@ import React, { ChangeEvent, FormEvent } from "react";
 import "./login.css";
 import { postLogin } from "../../control/api";
 import { setToken } from "../../control/session";
+import { RouteComponentProps } from "react-router";
 
 interface LoginState {
     username: string;
@@ -9,7 +10,7 @@ interface LoginState {
     status: string;
 }
 
-export class Login extends React.Component<{ }, LoginState> {
+export class Login extends React.Component<RouteComponentProps, LoginState> {
 
     state = {
         username: "",
@@ -27,6 +28,7 @@ export class Login extends React.Component<{ }, LoginState> {
                 // Place it in the session
                 setToken(token);
                 this.setState({status: ""});
+                this.props.history.push("/classes");
             } else {
                 // Let the user know that login failed
                 this.setState({status: "Invalid username/password"});
