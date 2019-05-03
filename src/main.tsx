@@ -1,11 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Login } from "./components/login";
+import { Root } from "./components/root";
 
 window.addEventListener("DOMContentLoaded", () => {
-    let template = 
-        <>
-            <Login/>
-        </>
-    ReactDOM.render(template, document.getElementById("root"));
+    ReactDOM.render(<Root/>, document.getElementById("root"));
 })

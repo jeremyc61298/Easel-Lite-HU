@@ -1,9 +1,12 @@
-input, button {
+div#login{
     margin: .5rem;
 }
 
-label {
+input, button, label {
     display: block;
-    margin-left: .5rem;
     margin-top: .5rem;
+}
+
+#status {
+    color: red;
 }
