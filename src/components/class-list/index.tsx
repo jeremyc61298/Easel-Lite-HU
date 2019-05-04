@@ -5,52 +5,65 @@ import { getClasses } from "../../control/api";
 
 interface ClassListState {
     classes: Class[];
+    loading: boolean;
 }
 
 export class ClassList extends React.Component<RouteComponentProps, ClassListState> {
     
     state = {
         // Pull from the api
-        classes: [] as Class[]
+        classes: [] as Class[],
+        loading: true
     };
 
-   componentWillMount() {
-        this.getClasses();
+   async componentDidMount() {
+       await this.getClasses();
    }
 
     getClasses = async () => {
         let classes = await getClasses();
-        this.setState({ classes }); 
+        this.setState({ classes, loading: false }); 
     }
 
     createClassList = () => {
         return (
-            <table>
-                <thead>
-                    <tr><td>Class List</td></tr>
-                </thead>
-                <tbody>
-                    {
-                        this.state.classes.map(c => 
-                            <tr key={c.title}>
-                                <td>{c.department}</td>
-                                <td>{c.number}</td>
-                                <td> - </td>
-                                <td>{c.title}</td>
-                                <td><Link to="/details"/></td>
-                            </tr>          
-                        )
-                    }
-                </tbody>
-            </table>
+            <>
+                <h1>Class List</h1>
+                <table>
+                    <tbody>
+                        {
+                            this.state.classes.map(c => 
+                                <tr key={c.title}>
+                                    <td>{c.department}</td>
+                                    <td>{c.number}</td>
+                                    <td> - </td>
+                                    <td>{c.title}</td>
+                                    <td><Link to={`/classes/${c.department}-${c.number}`}>Details</Link></td>
+                                </tr>          
+                            )
+                        }
+                    </tbody>
+                </table>
+            </>
         );
     }
 
     render() {
-        if (this.state.classes.length == 0){
-            return <h1>No Classes</h1>
-        } else {
-            return this.createClassList();
+        let template: JSX.Element;
+        if (this.state.loading){
+            return null;
         }
+        else if (this.state.classes.length == 0){
+            template = <h1>No Classes</h1>;
+        } else {
+            template = this.createClassList();
+        }
+
+        return (
+            <>
+                {template}
+                <Link to="/addclass">Create new class</Link>
+            </>
+        )
     }
 }

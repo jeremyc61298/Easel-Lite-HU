@@ -20,7 +20,6 @@ export class Login extends React.Component<RouteComponentProps, LoginState> {
 
     onLoginAttempt = async (evt: FormEvent) => {
         evt.preventDefault();
-        console.log(this.state.username, this.state.password);
         try {
             const token = await postLogin(this.state.username, this.state.password);
 

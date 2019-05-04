@@ -5,6 +5,8 @@ import { Login } from "./login";
 import { tokenExpired } from "../control/jwt";
 import { ClassList } from "./class-list";
 import { NotFound } from "./notFound";
+import { ClassDetails } from "./class/class-details";
+import { NewClass } from "./class/new-class";
 
 export function requireLogin(Component: ComponentType<any>) {
     return (props: RouteComponentProps) => {
@@ -23,8 +25,11 @@ export function Root() {
     return (
         <BrowserRouter basename="/">
             <Switch>    
+                <Redirect from="/" exact to="classes"/>
                 <Route path="/login" component={Login}/>  
                 <Route path="/classes" exact render={requireLogin(ClassList)}/>
+                <Route path="/addclass" exact render={requireLogin(NewClass)}/>
+                <Route path="/classes/:classdept-:classnum" exact render={requireLogin(ClassDetails)}/>
                 <Route component={NotFound}/>
             </Switch>
         </BrowserRouter>
