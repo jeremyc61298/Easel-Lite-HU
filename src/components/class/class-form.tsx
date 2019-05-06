@@ -88,39 +88,49 @@ export class ClassForm extends React.Component<ClassFormProps, ClassFormState> {
 
     render() {
         return (
-            <div id="classForm">
-                <form>
-                    <label htmlFor="dept">Department</label>
-                    <input name="dept" type="text" value={this.state.department} onChange={this.updateDepartment}/>
-                    <label htmlFor="number">Number</label> 
-                    <input name="number" type="number" value={this.state.number || ""} onChange={this.updateNumber}/>
-                    <label htmlFor="title">Title</label>
-                    <input name="title" type="text" value={this.state.title} onChange={this.updateTitle}/>
-                    <label htmlFor="teacher">Teacher</label>
-                    <select name="teacher" value={this.state.currentTeacher} onChange={this.updateTeacher}>
-                        { 
-                            this.state.teachers.map((t, i) => 
+            <div id="classForm" className="card" style={{width: "36rem"}}>
+                <div className="card-body">
+                    <form>
+                        <div className="form-group">
+                            <label htmlFor="dept">Department</label>
+                            <input className="form-control" name="dept" type="text" value={this.state.department} onChange={this.updateDepartment}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="number">Number</label> 
+                            <input className="form-control" name="number" type="number" value={this.state.number || ""} onChange={this.updateNumber}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="title">Title</label>
+                            <input className="form-control" name="title" type="text" value={this.state.title} onChange={this.updateTitle}/>
+                        </div>
+                        <div className="form-group"> 
+                            <label htmlFor="teacher">Teacher</label>
+                            <select className="form-control" name="teacher" value={this.state.currentTeacher} onChange={this.updateTeacher}>
+                                { 
+                                    this.state.teachers.map((t, i) => 
                                     <option key={i} value={t._id}>
-                                        {t.firstname} {t.lastname}
-                                    </option>
-                                )
-                        }
-                    </select>
-                </form>
-                <div id="submitButtons">
+                                                {t.firstname} {t.lastname}
+                                            </option>
+                                        )
+                                    }
+                            </select>
+                        </div>
+                    </form>
+                    <div id="submitButtons" className="btn-group" role="group">
                         {
                             this.props.deleteClass ? 
-                            <button id="delete" type="button" onClick={this.commitChanges}>Delete</button> :
+                            <button className="btn btn-danger" id="delete" type="button" onClick={this.commitChanges}>Delete</button> :
                             <></>
                         }
-                       
-                        <button id="cancel" type="button" onClick={this.commitChanges}>Cancel</button>
-                        <button id="save" type="button" 
+                    
+                        <button className="btn btn-secondary" id="cancel" type="button" onClick={this.commitChanges}>Cancel</button>
+                        <button className="btn btn-primary" id="save" type="button" 
                             onClick={this.commitChanges} 
                             disabled={this.didStateChange() ? false : true}>
                             Save
                         </button>
                     </div>
+                </div>
             </div>
         );
     }

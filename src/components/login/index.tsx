@@ -47,20 +47,23 @@ export class Login extends React.Component<RouteComponentProps, LoginState> {
 
     render() {
         return (
-            <>
-                <h1>Welcome to Easel-Lite!</h1>
-                <div id = "login">
-                    <h3>Login</h3> 
+            <div className="card" style={{width: "24rem"}}>
+                <div className="card-body">
+                    <h3 className="card-title">Login</h3> 
                     <div id="status">{this.state.status}</div>
                     <form onSubmit={this.onLoginAttempt}>
-                        <label htmlFor="username">Username:</label>
-                        <input type="text" id="username" onChange={this.updateUsername}/>
-                        <label htmlFor="password">Password:</label>
-                        <input type="password" id="password" onChange={this.updatePassword}/>
-                        <button type="submit">Login</button> 
+                        <div className="formGroup">
+                            <label htmlFor="username">Username:</label>
+                            <input type="text" id="username" className="form-control" onChange={this.updateUsername}/>
+                        </div>
+                        <div className="formGroup">
+                            <label htmlFor="password">Password:</label>
+                            <input type="password" id="password" className="form-control" onChange={this.updatePassword}/>
+                        </div>
+                        <button type="submit" className="btn btn-primary">Login</button> 
                     </form>
                 </div>
-            </>
+            </div>
         );
     }
 }

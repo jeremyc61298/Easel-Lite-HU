@@ -29,7 +29,16 @@ export class ClassList extends React.Component<RouteComponentProps, ClassListSta
         return (
             <>
                 <h1>Class List</h1>
-                <table>
+                <table className="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Department</th>
+                            <th scope="col">Number</th>
+                            <th scope="col"></th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Details</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         {
                             this.state.classes.map(c => 

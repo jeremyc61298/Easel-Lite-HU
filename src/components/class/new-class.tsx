@@ -1,13 +1,13 @@
 import React from "react";
 import { ClassFormState, ClassForm } from "./class-form";
 import { RouteComponentProps } from "react-router";
-import { Class, CreateableClass } from "../../types/api";
+import { CreateableClass } from "../../types/api";
 import { postClass } from "../../control/api";
 
 export class NewClass extends React.Component<RouteComponentProps, {}> {
 
     stateChanged = (formState: ClassFormState) => {
- 
+        console.log(formState);
         if (formState.currentTeacher !== "" ||
             formState.department !== "" ||
             formState.number !== 0 ||
